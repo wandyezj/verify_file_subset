@@ -19,6 +19,11 @@ Usage:
 This program validates that a .json file contains entries specified in a .verify.json file.
 
 The .verify.json file follows the same format as the .json file.
+
+= Source = 
+
+https://github.com/wandyezj/verify_file_subset
+
 ";
 
 
