@@ -7,20 +7,14 @@ namespace Verifiers
     /// <summary>
     /// Class to verify a .reg file with a .verify.reg file.
     /// </summary>
-    class RegVerifier
+    class RegVerifier : IVerifier
     {
-        /// <summary>
-        /// Verify a .reg file using a .verify.reg file
-        /// </summary>
-        /// <param name="verifyFilePath">.verify.reg file path</param>
-        /// <param name="regFilePath">.reg file path</param>
-        /// <returns>true iff the .reg file contains what is expected by the verify.reg file</returns>
-        public static bool Verify(string verifyFilePath, string regFilePath)
+        public bool VerifyText(string verifyText, string subjectText)
         {
-            List<RegistryEntry> registryEntries = RegistryEntry.ParseRegistryFile(regFilePath);
-            List<RegistryEntry> verifyEntries = RegistryEntry.ParseVerifyRegistryFile(verifyFilePath);
+            List<RegistryEntry> verifyEntries = RegistryEntry.ParseVerifyRegistryText(verifyText);
+            List<RegistryEntry> subjectEntries = RegistryEntry.ParseRegistryText(subjectText);
 
-            return IsExpected(verifyEntries, registryEntries);
+            return IsExpected(verifyEntries, subjectEntries);
         }
 
         /// <summary>
@@ -185,5 +179,7 @@ namespace Verifiers
 
             return isAsExpected;
         }
+
+
     }
 }

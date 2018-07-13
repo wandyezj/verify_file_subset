@@ -9,6 +9,7 @@
     <Import_RootNamespace>Verifiers</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)IVerifier.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)JsonVerifier.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RegistryEntry.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RegVerifier.cs" />

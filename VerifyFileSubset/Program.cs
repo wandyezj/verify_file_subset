@@ -23,7 +23,10 @@ Example:
 ";
 
         private static string help_detailed = $@"
+# Quick Guide
 {help}
+
+
 
 # Overview
 
@@ -131,8 +134,20 @@ https://github.com/wandyezj/verify_file_subset
 
         public static int ActionVerify(string verifyFilePath, string subjectFilePath)
         {
+            Console.WriteLine($@"
+Verifying:
+[{subjectFilePath}]
+
+With:
+[{verifyFilePath}]
+");
+
             bool is_subset = Verify.VerifyFiles(verifyFilePath, subjectFilePath);
+
+            Console.WriteLine("");
             ShowResult(is_subset);
+            Console.WriteLine(" Verification");
+
             return is_subset ? ExitCodeVerificationPass : ExitCodeVerificationFail;
         }
 

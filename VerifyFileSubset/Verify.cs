@@ -11,48 +11,54 @@ namespace VerifyFileSubset
     {
         public static bool VerifyFiles(string verifyFilePath, string subjectFilePath)
         {
-            switch(Path.GetExtension(verifyFilePath).ToLower())
+            var verifyText = File.ReadAllText(verifyFilePath);
+
+            var subjectText = File.ReadAllText(subjectFilePath);
+
+            switch (Path.GetExtension(verifyFilePath).ToLower())
             {
                 case ".json":
-                    return VerifyFilesJson(verifyFilePath, subjectFilePath);
+                    return VerifyTextJson(verifyText, subjectText);
                 case ".xml":
-                    return VerifyFilesXml(verifyFilePath, subjectFilePath);
+                    return VerifyTextXml(verifyText, subjectText);
                 case ".reg":
-                    return VerifyFilesReg(verifyFilePath, subjectFilePath);
+                    return VerifyTextReg(verifyText, subjectText);
                 default:
                     return false;
             }
         }
 
-        private static bool VerifyFilesJson(string verifyFilePath, string subjectFilePath)
+        /// <summary>
+        /// Test hook to allow direct access for unit testing also called by main program.
+        /// </summary>
+        /// <param name="verify">verify text</param>
+        /// <param name="subject">subject text</param>
+        /// <returns></returns>
+        public static bool VerifyTextJson(string verify, string subject)
         {
-            var verifyData = File.ReadAllText(verifyFilePath);
-
-            var subjectData = File.ReadAllText(subjectFilePath);
-
-            return VerifyJsonText(verifyData, subjectData);
-        }
-
-        private static bool VerifyFilesXml(string verifyFilePath, string subjectFilePath)
-        {
-            return XmlVerifier.Verify(verifyFilePath, subjectFilePath);
-        }
-
-        private static bool VerifyFilesReg(string verifyFilePath, string subjectFilePath)
-        {
-            return RegVerifier.Verify(verifyFilePath, subjectFilePath);
+            return (new JsonVerifier()).VerifyText(verify, subject);
         }
 
         /// <summary>
         /// Test hook to allow direct access for unit testing also called by main program.
         /// </summary>
-        /// <param name="verify">verify json</param>
-        /// <param name="subject">subject json</param>
+        /// <param name="verify">verify text</param>
+        /// <param name="subject">subject text</param>
         /// <returns></returns>
-        public static bool VerifyJsonText(string verify, string subject)
+        public static bool VerifyTextXml(string verify, string subject)
         {
-            return JsonVerifier.VerifyText(verify, subject);
+            return (new XmlVerifier()).VerifyText(verify, subject);
         }
 
+        /// <summary>
+        /// Test hook to allow direct access for unit testing also called by main program.
+        /// </summary>
+        /// <param name="verify">verify text</param>
+        /// <param name="subject">subject text</param>
+        /// <returns></returns>
+        public static bool VerifyTextReg(string verify, string subject)
+        {
+            return (new RegVerifier()).VerifyText(verify, subject);
+        }
     }
 }

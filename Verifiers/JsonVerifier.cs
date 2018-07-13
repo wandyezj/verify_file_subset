@@ -3,7 +3,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Verifiers
 {
-    public class JsonVerifier
+    public class JsonVerifier : IVerifier
     {
 
         /// <summary>
@@ -22,7 +22,7 @@ namespace Verifiers
         /// <param name="subjectText">json subject</param>
         /// <returns>True if subject is a superset of verify</returns>
 
-        public static bool VerifyText(string verifyText, string subjectText)
+        public bool VerifyText(string verifyText, string subjectText)
         {
             var verify = JToken.Parse(verifyText);
 

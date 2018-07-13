@@ -225,9 +225,9 @@ namespace Verifiers
         /// </summary>
         /// <param name="filePath">.reg file path</param>
         /// <returns>List of RegistryEntries in the file</returns>
-        public static List<RegistryEntry> ParseRegistryFile(string filePath)
+        public static List<RegistryEntry> ParseRegistryText(string text)
         {
-            return ParseRegistryEntries(filePath, RegistryFileType);
+            return ParseRegistryEntries(text, RegistryFileType);
         }
 
         /// <summary>
@@ -235,9 +235,9 @@ namespace Verifiers
         /// </summary>
         /// <param name="filePath">.verify.reg file path</param>
         /// <returns>List of RegistryEntries in the file</returns>
-        public static List<RegistryEntry> ParseVerifyRegistryFile(string filePath)
+        public static List<RegistryEntry> ParseVerifyRegistryText(string text)
         {
-            return ParseRegistryEntries(filePath, VerifyRegistryFileType);
+            return ParseRegistryEntries(text, VerifyRegistryFileType);
         }
 
         /// <summary>
@@ -246,17 +246,17 @@ namespace Verifiers
         /// <param name="filePath">.reg or .verify.reg file</param>
         /// <param name="expectedHeader">expected first line of the file</param>
         /// <returns></returns>
-        private static List<RegistryEntry> ParseRegistryEntries(string filePath, string expectedHeader)
+        private static List<RegistryEntry> ParseRegistryEntries(string text, string expectedHeader)
         {
             var entries = new List<RegistryEntry>();
 
-            var lines = File.ReadAllLines(filePath);
+            var lines = text.Split(new char[] { '\n' });
 
             var header = (lines.First() ?? "").Trim();
 
             if (!header.Equals(expectedHeader))
             {
-                throw new ArgumentException($"Unexpected file type [{header}] in [{filePath}] Expected [{expectedHeader}]");
+                throw new ArgumentException($"Unexpected file type [{header}] Expected [{expectedHeader}]");
             }
 
             string currentKey = "";
@@ -309,7 +309,7 @@ namespace Verifiers
 
             if (exceptions)
             {
-                throw new ArgumentException($"Failed to parse: [{header}] [{filePath}]");
+                throw new ArgumentException($"Failed to parse: [{header}]");
             }
 
             return entries;

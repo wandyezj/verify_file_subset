@@ -13,7 +13,7 @@ namespace UnitTests
             var subject = "{}";
             var expected = true;
 
-            Assert.AreEqual(expected, Verify.VerifyJsonText(verify, subject));
+            Assert.AreEqual(expected, Verify.VerifyTextJson(verify, subject));
         }
 
         [TestMethod]
@@ -23,7 +23,7 @@ namespace UnitTests
             var subject = "[]";
             var expected = true;
 
-            Assert.AreEqual(expected, Verify.VerifyJsonText(verify, subject));
+            Assert.AreEqual(expected, Verify.VerifyTextJson(verify, subject));
         }
 
         [TestMethod]
@@ -33,7 +33,7 @@ namespace UnitTests
             var subject = @"{'key':'value', 'key2':'value2'}";
             var expected = true;
 
-            Assert.AreEqual(expected, Verify.VerifyJsonText(verify, subject));
+            Assert.AreEqual(expected, Verify.VerifyTextJson(verify, subject));
         }
 
         [TestMethod]
@@ -43,7 +43,7 @@ namespace UnitTests
             var subject = @"{'key':'value', 'key2':'value2'}";
             var expected = false;
 
-            Assert.AreEqual(expected, Verify.VerifyJsonText(verify, subject));
+            Assert.AreEqual(expected, Verify.VerifyTextJson(verify, subject));
         }
 
         [TestMethod]
@@ -53,7 +53,7 @@ namespace UnitTests
             var subject = @"{'key':'different_value', 'key2':'value2'}";
             var expected = false;
 
-            Assert.AreEqual(expected, Verify.VerifyJsonText(verify, subject));
+            Assert.AreEqual(expected, Verify.VerifyTextJson(verify, subject));
         }
 
 
@@ -64,7 +64,7 @@ namespace UnitTests
             var subject = @"[1, 2, 3, 4]";
             var expected = true;
 
-            Assert.AreEqual(expected, Verify.VerifyJsonText(verify, subject));
+            Assert.AreEqual(expected, Verify.VerifyTextJson(verify, subject));
         }
 
         [TestMethod]
@@ -74,7 +74,7 @@ namespace UnitTests
             var subject = @"[1, 2, 3, 4]";
             var expected = false;
 
-            Assert.AreEqual(expected, Verify.VerifyJsonText(verify, subject));
+            Assert.AreEqual(expected, Verify.VerifyTextJson(verify, subject));
         }
 
 
@@ -85,7 +85,7 @@ namespace UnitTests
             var subject = @"{'key':{'key':'value'}, 'key_b':'value'}";
             var expected = true;
 
-            Assert.AreEqual(expected, Verify.VerifyJsonText(verify, subject));
+            Assert.AreEqual(expected, Verify.VerifyTextJson(verify, subject));
         }
 
         [TestMethod]
@@ -95,7 +95,7 @@ namespace UnitTests
             var subject = @"[['value_other', 'value'], ['value','value', 'value_middle', []], ['value']]";
             var expected = true;
 
-            Assert.AreEqual(expected, Verify.VerifyJsonText(verify, subject));
+            Assert.AreEqual(expected, Verify.VerifyTextJson(verify, subject));
         }
 
 

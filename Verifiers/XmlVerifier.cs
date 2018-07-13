@@ -3,7 +3,7 @@ using System.Xml;
 
 namespace Verifiers
 {
-    public class XmlVerifier
+    public class XmlVerifier : IVerifier
     {
         /// <summary>
         /// Is xml a superset of verify?
@@ -20,23 +20,23 @@ namespace Verifiers
         /// <param name="verifyXmlFilePath">file that contains the nodes to check that are present in xml</param>
         /// <param name="xmlFilePath">xml file to check</param>
         /// <returns>True if xml is a superset of verify</returns>
-        public static bool Verify(string verifyXmlFilePath, string xmlFilePath)
+        public bool VerifyText(string verifyText, string subjectText)
+        {
+            var verify = new XmlDocument();
+            verify.LoadXml(verifyText);
+
+            var subject = new XmlDocument();
+            subject.LoadXml(subjectText);
+
+            return ChildrenMatch(verify, subject);
+        }
+
+        private static bool ChildrenMatch(XmlNode verify, XmlNode xml)
         {
             // iterate through nodes in the verify xml file
             // make sure each verify node has a corresponding node in the xml
             // node order matters
 
-            var verify = new XmlDocument();
-            verify.Load(verifyXmlFilePath);
-
-            var xml = new XmlDocument();
-            xml.Load(xmlFilePath);
-
-            return ChildrenMatch(verify, xml);
-        }
-
-        private static bool ChildrenMatch(XmlNode verify, XmlNode xml)
-        {
             var verifyNodes = verify.ChildNodes;
             var xmlNodes = xml.ChildNodes;
 
@@ -166,6 +166,7 @@ namespace Verifiers
             // nodes: name, text, attributes, and children match
             return true;
         }
+
 
     }
 }
