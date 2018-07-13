@@ -10,5 +10,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)JsonVerifier.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RegistryEntry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RegVerifier.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)XmlVerifier.cs" />
   </ItemGroup>
 </Project>

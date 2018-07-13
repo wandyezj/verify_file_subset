@@ -11,8 +11,8 @@ namespace VerifyFileSubset
         public enum RunAction { Invalid, Help, DetailedHelp, Verify };
 
         // Restriction on file extensions, enforce .verify to make sure intent is clear
-        private static readonly string[] FileAllowableSuffix = { ".json" };
-        private static readonly string[] VerifyFileAllowableSuffix = { ".verify.json" };
+        private static readonly string[] FileAllowableSuffix = { ".json", ".xml", ".reg" };
+        private static readonly string[] VerifyFileAllowableSuffix = { ".verify.json", ".verify.xml", ".verify.reg" };
 
         private static readonly char[] HelpPrefix = { '-', '/', '\\' };
         private static readonly List<string> HelpOptions = new List<string> { "?", "h", "help" };
@@ -23,7 +23,7 @@ namespace VerifyFileSubset
 
         public string VerifyFilePath { get; private set; }
 
-        public string FilePath { get; private set; }
+        public string SubjectFilePath { get; private set; }
 
         public VerifyArguments(string[] args)
         {
@@ -42,11 +42,11 @@ namespace VerifyFileSubset
                     break;
                 case 2:
                     VerifyFilePath = args[0];
-                    FilePath = args[1];
+                    SubjectFilePath = args[1];
 
                     var errors = new StringBuilder();
 
-                    if (FilePathArgumentOk(VerifyFilePath, VerifyFileAllowableSuffix, ref errors) && FilePathArgumentOk(FilePath, FileAllowableSuffix, ref errors))
+                    if (FileExtensionsMatch(VerifyFilePath, SubjectFilePath, ref errors) && FilePathArgumentOk(VerifyFilePath, VerifyFileAllowableSuffix, ref errors) && FilePathArgumentOk(SubjectFilePath, FileAllowableSuffix, ref errors))
                     {
                         Action = RunAction.Verify;
                     }
@@ -84,6 +84,21 @@ namespace VerifyFileSubset
             return true;
         }
 
+
+        private static bool FileExtensionsMatch(string verifyFilePath, string subjectFilePath, ref StringBuilder errors)
+        {
+            var verifyExtension = Path.GetExtension(verifyFilePath).ToLower();
+            var subjectEntension = Path.GetExtension(subjectFilePath).ToLower();
+
+            bool extensionsMatch = verifyExtension == subjectEntension;
+
+            if (!extensionsMatch)
+            {
+                errors.Append($"Verify [{verifyExtension}] and Subject [{subjectEntension}] do not have the same extensions.");
+            }
+
+            return extensionsMatch;
+        }
 
 
     }
