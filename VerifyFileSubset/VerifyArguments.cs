@@ -43,19 +43,18 @@ namespace VerifyFileSubset
                 case 2:
                     VerifyFilePath = args[0];
                     FilePath = args[1];
-                    Action = RunAction.Verify;
+
+                    var errors = new StringBuilder();
+
+                    if (FilePathArgumentOk(VerifyFilePath, VerifyFileAllowableSuffix, ref errors) && FilePathArgumentOk(FilePath, FileAllowableSuffix, ref errors))
+                    {
+                        Action = RunAction.Verify;
+                    }
+                    ArgumentIssues = errors.ToString();
                     break;
                 default:
                     break;
             }
-
-            var errors = new StringBuilder();
-
-            if (!(FilePathArgumentOk(VerifyFilePath, VerifyFileAllowableSuffix, ref errors) && FilePathArgumentOk(FilePath, FileAllowableSuffix, ref errors)))
-            {
-                Action = RunAction.Invalid;
-            }
-            ArgumentIssues = errors.ToString();
         }
 
         /// <summary>
