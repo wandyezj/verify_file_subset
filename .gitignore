@@ -3,3 +3,5 @@
 /bin/*
 .vs/*
 *.csproj.user
+/UnitTests/obj/*
+VerifyFileSubset/obj/*
