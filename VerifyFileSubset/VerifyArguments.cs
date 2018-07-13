@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace VerifyFileSubset
 {
@@ -10,8 +10,8 @@ namespace VerifyFileSubset
     {
         public enum RunAction { Invalid, Help, DetailedHelp, Verify };
 
+        // Restriction on file extensions, enforce .verify to make sure intent is clear
         private static readonly string[] FileAllowableSuffix = { ".json" };
-
         private static readonly string[] VerifyFileAllowableSuffix = { ".verify.json" };
 
         private static readonly char[] HelpPrefix = { '-', '/', '\\' };

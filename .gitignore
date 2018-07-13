@@ -1,7 +1,10 @@
-/obj/*
+obj/*
+*/obj/*
 /packages/*
-/bin/*
+*/packages/*
+bin/*
+*/bin/*
 .vs/*
+*/.vs/*
 *.csproj.user
-/UnitTests/obj/*
-VerifyFileSubset/obj/*
+

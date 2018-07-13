@@ -8,39 +8,32 @@ using Newtonsoft.Json;
 using System.IO;
 using Newtonsoft.Json.Linq;
 
-namespace VerifyJsonFile
+namespace Verifiers
 {
-    class JsonVerifier
+    public class JsonVerifier
     {
+
         /// <summary>
-        /// Is the file a superset of verify?
+        /// Is the subject a superset of verify?
         /// 
         /// Checks:
         ///     attributes in verify have a corresponding attribute in the subject (order matters).
         ///
         ///     To be a corresponding attribute:
         ///         * attribute must have the same name
-        ///         * attribute present on the verify node must be present
+        ///         * attribute present on the verify must be present in subject
         ///         * attribute children must be corresponding
         ///
         /// </summary>
-        /// <param name="verifyFilePath">file that contains the subset to check that are present in verify</param>
-        /// <param name="filePath">file to check</param>
-        /// <returns>True if xml is a superset of verify</returns>
-        public static bool Verify(string verifyFilePath, string subjectFilePath)
-        {
-            var verifyData = File.ReadAllText(verifyFilePath);
-
-            var subjectData = File.ReadAllText(subjectFilePath);
-
-            return VerifyText(verifyData, subjectData);
-        }
+        /// <param name="verifyText">json subset to check that subject is a superset</param>
+        /// <param name="subjectText">json subject</param>
+        /// <returns>True if subject is a superset of verify</returns>
 
         public static bool VerifyText(string verifyText, string subjectText)
         {
-            var verify = JObject.Parse(verifyText);
+            var verify = JToken.Parse(verifyText);
 
-            var subject = JObject.Parse(subjectText);
+            var subject = JToken.Parse(subjectText);
 
             return ChildrenMatch(verify, subject);
         }

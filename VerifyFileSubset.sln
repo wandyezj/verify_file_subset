@@ -3,16 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2002
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{28D37F24-EEC3-4A99-9B83-6BB2A6F7828E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VerifyFileSubset", "VerifyFileSubset\VerifyFileSubset.csproj", "{A88A0C17-0C81-4F94-B05A-BE99BC8DAB7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSubsetVerifiers", "FileSubsetVerifiers\FileSubsetVerifiers.csproj", "{FDA1A34A-5F96-4BA6-ABD7-15BF5B024B54}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Verifiers", "Verifiers\Verifiers.shproj", "{B3AE8298-83B4-43D2-981E-1FA78E040E73}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "VerifiersShared", "Verifiers\VerifiersShared.shproj", "{B3AE8298-83B4-43D2-981E-1FA78E040E73}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{6C72BE75-492B-4FBF-935F-6AC65ABCAF9D}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Verifiers\Verifiers.projitems*{a88a0c17-0c81-4f94-b05a-be99bc8dab7c}*SharedItemsImports = 4
 		Verifiers\Verifiers.projitems*{b3ae8298-83b4-43d2-981e-1fa78e040e73}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,18 +19,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{28D37F24-EEC3-4A99-9B83-6BB2A6F7828E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{28D37F24-EEC3-4A99-9B83-6BB2A6F7828E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{28D37F24-EEC3-4A99-9B83-6BB2A6F7828E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{28D37F24-EEC3-4A99-9B83-6BB2A6F7828E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A88A0C17-0C81-4F94-B05A-BE99BC8DAB7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A88A0C17-0C81-4F94-B05A-BE99BC8DAB7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A88A0C17-0C81-4F94-B05A-BE99BC8DAB7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A88A0C17-0C81-4F94-B05A-BE99BC8DAB7C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FDA1A34A-5F96-4BA6-ABD7-15BF5B024B54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FDA1A34A-5F96-4BA6-ABD7-15BF5B024B54}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FDA1A34A-5F96-4BA6-ABD7-15BF5B024B54}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FDA1A34A-5F96-4BA6-ABD7-15BF5B024B54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C72BE75-492B-4FBF-935F-6AC65ABCAF9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C72BE75-492B-4FBF-935F-6AC65ABCAF9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C72BE75-492B-4FBF-935F-6AC65ABCAF9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C72BE75-492B-4FBF-935F-6AC65ABCAF9D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
