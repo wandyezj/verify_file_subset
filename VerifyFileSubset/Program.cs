@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Verifiers;
 
 namespace VerifyFileSubset
 {
-        // Verify that a json file contains the subset of another json file
+    // Verify that a json file contains the subset of another json file
 
     class Program
     {
