@@ -10,9 +10,9 @@ namespace VerifyFileSubset
     {
         public enum RunAction { Invalid, Help, DetailedHelp, Verify };
 
-        // Restriction on file extensions, enforce .verify to make sure intent is clear
+        // Restriction on file extensions, enforce .verify.reg to make sure intent is clear
         private static readonly string[] FileAllowableSuffix = { ".json", ".xml", ".reg" };
-        private static readonly string[] VerifyFileAllowableSuffix = { ".verify.json", ".verify.xml", ".verify.reg" };
+        private static readonly string[] VerifyFileAllowableSuffix = { ".json", ".xml", ".verify.reg" };
 
         private static readonly char[] HelpPrefix = { '-', '/', '\\' };
         private static readonly List<string> HelpOptions = new List<string> { "?", "h", "help" };

@@ -13,7 +13,7 @@ namespace VerifyFileSubset
 
         private static string help = $@"
 Usage:
-    [.verify.type file path] [.type file path] 
+    [*.verify.type file path] [*.type file path] 
 
     available .type are: {{.json, .xml, .reg}}
 
