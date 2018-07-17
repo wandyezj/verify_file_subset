@@ -4,7 +4,7 @@ using VerifyFileSubset;
 namespace UnitTests
 {
     [TestClass]
-    public class UnitTestJson
+    public class JsonUnitTest
     {
         [TestMethod]
         public void TestEmptyObjectEqual()

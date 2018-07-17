@@ -125,6 +125,7 @@ namespace Verifiers
             {
                 Type = ValueType.String;
                 Data = dataField.Substring(1, dataField.Length - 2);
+                Action = ParseAction(Data);
             }
             else
             {
