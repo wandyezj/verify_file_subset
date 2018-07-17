@@ -134,6 +134,34 @@ namespace UnitTests
             Compare(verify, subject, expected);
         }
 
+        [TestMethod]
+        public void TestJsonObjectIgnoreOrderEqual()
+        {
+            var verify = @"{'key':'value','key_other':'value_other'}";
+            var subject = @"{'key_other':'value_other', 'key':'value'}";
+            var expected = true;
 
+            Compare(verify, subject, expected);
+        }
+
+        [TestMethod]
+        public void TestJsonComplexObjectIgnoreOrderEqual()
+        {
+            var verify = @"{'key':{'key':'value'},'key_other':[0,0]}";
+            var subject = @"{'key_other':[0,0], 'key':{'key':'value'}}";
+            var expected = true;
+
+            Compare(verify, subject, expected);
+        }
+
+        [TestMethod]
+        public void TestJsonValueEqual()
+        {
+            var verify = @"[0, '0', 0.0, {}]";
+            var subject = @"[0, '0', 0.0, {}]";
+            var expected = true;
+
+            Compare(verify, subject, expected);
+        }
     }
 }
