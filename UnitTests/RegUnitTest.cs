@@ -8,6 +8,56 @@ namespace UnitTests
     public class RegUnitTest
     {
         [TestMethod]
+        public void TestRegBasicSubjectEmpty()
+        {
+            var verify = @"Windows Registry Verify
+[key]
+'value'='data'
+ 
+ ";
+            var subject = @"";
+            var expected = false;
+
+            verify = verify.Replace("'", "\"");
+            subject = subject.Replace("'", "\"");
+
+            Assert.AreEqual(expected, Verify.VerifyTextReg(verify, subject));
+        }
+
+        [TestMethod]
+        public void TestRegBasicVerifyEmpty()
+        {
+            var verify = @"";
+            var subject = @"Windows Registry Editor Version 5.00
+[key]
+'value'='data'
+ 
+ ";
+            var expected = false;
+
+            verify = verify.Replace("'", "\"");
+            subject = subject.Replace("'", "\"");
+
+            Assert.AreEqual(expected, Verify.VerifyTextReg(verify, subject));
+        }
+
+        [TestMethod]
+        public void TestRegBasicVerifyAndSubjectEmpty()
+        {
+            var verify = @"";
+            var subject = @"";
+
+            var expected = true;
+
+            verify = verify.Replace("'", "\"");
+            subject = subject.Replace("'", "\"");
+
+            Assert.AreEqual(expected, Verify.VerifyTextReg(verify, subject));
+        }
+
+
+
+        [TestMethod]
         public void TestRegBasicEqual()
         {
             var verify = @"Windows Registry Verify
@@ -131,6 +181,8 @@ namespace UnitTests
 
             Assert.AreEqual(expected, Verify.VerifyTextReg(verify, subject));
         }
+
+
 
     }
 }

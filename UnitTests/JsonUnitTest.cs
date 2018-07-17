@@ -7,6 +7,37 @@ namespace UnitTests
     public class JsonUnitTest
     {
         [TestMethod]
+        public void TestVerifyEmpty()
+        {
+            var verify = "";
+            var subject = "{}";
+            var expected = false;
+
+            Assert.AreEqual(expected, Verify.VerifyTextJson(verify, subject));
+        }
+
+        [TestMethod]
+        public void TestSubjectEmpty()
+        {
+            var verify = "{}";
+            var subject = "";
+            var expected = false;
+
+            Assert.AreEqual(expected, Verify.VerifyTextJson(verify, subject));
+        }
+
+        [TestMethod]
+        public void TestVerifyAndSubjectEmpty()
+        {
+            var verify = "";
+            var subject = "";
+            var expected = true;
+
+            Assert.AreEqual(expected, Verify.VerifyTextJson(verify, subject));
+        }
+
+
+        [TestMethod]
         public void TestEmptyObjectEqual()
         {
             var verify = "{}";

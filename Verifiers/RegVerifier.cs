@@ -11,6 +11,16 @@ namespace Verifiers
     {
         public bool VerifyText(string verifyText, string subjectText)
         {
+            if (string.IsNullOrWhiteSpace(verifyText) != string.IsNullOrWhiteSpace(subjectText))
+            {
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(verifyText) && string.IsNullOrWhiteSpace(subjectText))
+            {
+                return true;
+            }
+
             List<RegistryEntry> verifyEntries = RegistryEntry.ParseVerifyRegistryText(verifyText);
             List<RegistryEntry> subjectEntries = RegistryEntry.ParseRegistryText(subjectText);
 

@@ -8,6 +8,36 @@ namespace UnitTests
     public class XmlUnitTest
     {
         [TestMethod]
+        public void TestBasicVerifyEmpty()
+        {
+            var verify = "";
+            var subject = "<tag/>";
+            var expected = false;
+
+            Assert.AreEqual(expected, Verify.VerifyTextXml(verify, subject));
+        }
+
+        [TestMethod]
+        public void TestBasicSubjectEmpty()
+        {
+            var verify = "<tag/>";
+            var subject = "";
+            var expected = false;
+
+            Assert.AreEqual(expected, Verify.VerifyTextXml(verify, subject));
+        }
+
+        [TestMethod]
+        public void TestBasicSubjectAndVerifyEmpty()
+        {
+            var verify = "";
+            var subject = "";
+            var expected = true;
+
+            Assert.AreEqual(expected, Verify.VerifyTextXml(verify, subject));
+        }
+
+        [TestMethod]
         public void TestBasicEqual()
         {
             var verify = "<tag/>";

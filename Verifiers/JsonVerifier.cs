@@ -24,6 +24,16 @@ namespace Verifiers
 
         public bool VerifyText(string verifyText, string subjectText)
         {
+            if (string.IsNullOrWhiteSpace(verifyText) != string.IsNullOrWhiteSpace(subjectText))
+            {
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(verifyText) && string.IsNullOrWhiteSpace(subjectText))
+            {
+                return true;
+            }
+
             var verify = JToken.Parse(verifyText);
 
             var subject = JToken.Parse(subjectText);

@@ -22,6 +22,16 @@ namespace Verifiers
         /// <returns>True if xml is a superset of verify</returns>
         public bool VerifyText(string verifyText, string subjectText)
         {
+            if (string.IsNullOrWhiteSpace(verifyText) != string.IsNullOrWhiteSpace(subjectText))
+            {
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(verifyText) && string.IsNullOrWhiteSpace(subjectText))
+            {
+                return true;
+            }
+
             var verify = new XmlDocument();
             verify.LoadXml(verifyText);
 
