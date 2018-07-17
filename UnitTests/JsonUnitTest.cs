@@ -6,55 +6,60 @@ namespace UnitTests
     [TestClass]
     public class JsonUnitTest
     {
+        private static void Compare(string verify, string subject, bool expected)
+        {
+            Assert.AreEqual(expected, Verify.VerifyTextJson(verify, subject));
+        }
+
         [TestMethod]
-        public void TestVerifyEmpty()
+        public void TestJsonVerifyEmpty()
         {
             var verify = "";
             var subject = "{}";
             var expected = false;
 
-            Assert.AreEqual(expected, Verify.VerifyTextJson(verify, subject));
+            Compare(verify, subject, expected);
         }
 
         [TestMethod]
-        public void TestSubjectEmpty()
+        public void TestJsonSubjectEmpty()
         {
             var verify = "{}";
             var subject = "";
             var expected = false;
 
-            Assert.AreEqual(expected, Verify.VerifyTextJson(verify, subject));
+            Compare(verify, subject, expected);
         }
 
         [TestMethod]
-        public void TestVerifyAndSubjectEmpty()
+        public void TestJsonVerifyAndSubjectEmpty()
         {
             var verify = "";
             var subject = "";
             var expected = true;
 
-            Assert.AreEqual(expected, Verify.VerifyTextJson(verify, subject));
+            Compare(verify, subject, expected);
         }
 
 
         [TestMethod]
-        public void TestEmptyObjectEqual()
+        public void TestJsonEmptyObjectEqual()
         {
             var verify = "{}";
             var subject = "{}";
             var expected = true;
 
-            Assert.AreEqual(expected, Verify.VerifyTextJson(verify, subject));
+            Compare(verify, subject, expected);
         }
 
         [TestMethod]
-        public void TestEmptyArrayEqual()
+        public void TestJsonEmptyArrayEqual()
         {
             var verify = "[]";
             var subject = "[]";
             var expected = true;
 
-            Assert.AreEqual(expected, Verify.VerifyTextJson(verify, subject));
+            Compare(verify, subject, expected);
         }
 
         [TestMethod]
@@ -64,69 +69,69 @@ namespace UnitTests
             var subject = @"{'key':'value', 'key2':'value2'}";
             var expected = true;
 
-            Assert.AreEqual(expected, Verify.VerifyTextJson(verify, subject));
+            Compare(verify, subject, expected);
         }
 
         [TestMethod]
-        public void TestObjectSubsetKeyMissingNotEqual()
+        public void TestJsonObjectSubsetKeyMissingNotEqual()
         {
             var verify = @"{'missing_key':'value'}";
             var subject = @"{'key':'value', 'key2':'value2'}";
             var expected = false;
 
-            Assert.AreEqual(expected, Verify.VerifyTextJson(verify, subject));
+            Compare(verify, subject, expected);
         }
 
         [TestMethod]
-        public void TestObjectSubsetKeyValueDifferentNotEqual()
+        public void TestJsonObjectSubsetKeyValueDifferentNotEqual()
         {
             var verify = @"{'key':'value'}";
             var subject = @"{'key':'different_value', 'key2':'value2'}";
             var expected = false;
 
-            Assert.AreEqual(expected, Verify.VerifyTextJson(verify, subject));
+            Compare(verify, subject, expected);
         }
 
 
         [TestMethod]
-        public void TestArraySubsetEqual()
+        public void TestJsonArraySubsetEqual()
         {
             var verify = @"[1, 3]";
             var subject = @"[1, 2, 3, 4]";
             var expected = true;
 
-            Assert.AreEqual(expected, Verify.VerifyTextJson(verify, subject));
+            Compare(verify, subject, expected);
         }
 
         [TestMethod]
-        public void TestArraySubsetValueMissingEqual()
+        public void TestJsonArraySubsetValueMissingEqual()
         {
             var verify = @"[1, 'missing']";
             var subject = @"[1, 2, 3, 4]";
             var expected = false;
 
-            Assert.AreEqual(expected, Verify.VerifyTextJson(verify, subject));
+            Compare(verify, subject, expected);
         }
 
 
         [TestMethod]
-        public void TestObjectMultilevelEqual()
+        public void TestJsonObjectMultilevelEqual()
         {
             var verify = @"{'key':{'key':'value'}}";
             var subject = @"{'key':{'key':'value'}, 'key_b':'value'}";
             var expected = true;
 
-            Assert.AreEqual(expected, Verify.VerifyTextJson(verify, subject));
+            Compare(verify, subject, expected);
         }
 
         [TestMethod]
-        public void TestArrayMultilevelEqual()
+        public void TestJsonArrayMultilevelEqual()
         {
             var verify = @"[['value'], ['value','value', []]]";
             var subject = @"[['value_other', 'value'], ['value','value', 'value_middle', []], ['value']]";
             var expected = true;
 
-            Assert.AreEqual(expected, Verify.VerifyTextJson(verify, subject));
+            Compare(verify, subject, expected);
         }
 
 

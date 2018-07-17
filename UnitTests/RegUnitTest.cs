@@ -7,6 +7,14 @@ namespace UnitTests
     [TestClass]
     public class RegUnitTest
     {
+        private static void Compare(string verify, string subject, bool expected)
+        {
+            verify = verify.Replace("'", "\"");
+            subject = subject.Replace("'", "\"");
+
+            Assert.AreEqual(expected, Verify.VerifyTextReg(verify, subject));
+        }
+
         [TestMethod]
         public void TestRegBasicSubjectEmpty()
         {
@@ -18,10 +26,7 @@ namespace UnitTests
             var subject = @"";
             var expected = false;
 
-            verify = verify.Replace("'", "\"");
-            subject = subject.Replace("'", "\"");
-
-            Assert.AreEqual(expected, Verify.VerifyTextReg(verify, subject));
+            Compare(verify, subject, expected);
         }
 
         [TestMethod]
@@ -35,10 +40,7 @@ namespace UnitTests
  ";
             var expected = false;
 
-            verify = verify.Replace("'", "\"");
-            subject = subject.Replace("'", "\"");
-
-            Assert.AreEqual(expected, Verify.VerifyTextReg(verify, subject));
+            Compare(verify, subject, expected);
         }
 
         [TestMethod]
@@ -49,10 +51,7 @@ namespace UnitTests
 
             var expected = true;
 
-            verify = verify.Replace("'", "\"");
-            subject = subject.Replace("'", "\"");
-
-            Assert.AreEqual(expected, Verify.VerifyTextReg(verify, subject));
+            Compare(verify, subject, expected);
         }
 
 
@@ -72,10 +71,7 @@ namespace UnitTests
  ";
             var expected = true;
 
-            verify = verify.Replace("'", "\"");
-            subject = subject.Replace("'", "\"");
-
-            Assert.AreEqual(expected, Verify.VerifyTextReg(verify, subject));
+            Compare(verify, subject, expected);
         }
 
         [TestMethod]
@@ -93,10 +89,7 @@ namespace UnitTests
  ";
             var expected = false;
 
-            verify = verify.Replace("'", "\"");
-            subject = subject.Replace("'", "\"");
-
-            Assert.AreEqual(expected, Verify.VerifyTextReg(verify, subject));
+            Compare(verify, subject, expected);
         }
 
         [TestMethod]
@@ -114,10 +107,7 @@ namespace UnitTests
  ";
             var expected = false;
 
-            verify = verify.Replace("'", "\"");
-            subject = subject.Replace("'", "\"");
-
-            Assert.AreEqual(expected, Verify.VerifyTextReg(verify, subject));
+            Compare(verify, subject, expected);
         }
 
         [TestMethod]
@@ -135,10 +125,7 @@ namespace UnitTests
  ";
             var expected = false;
 
-            verify = verify.Replace("'", "\"");
-            subject = subject.Replace("'", "\"");
-
-            Assert.AreEqual(expected, Verify.VerifyTextReg(verify, subject));
+            Compare(verify, subject, expected);
         }
 
         [TestMethod]
@@ -156,10 +143,7 @@ namespace UnitTests
  ";
             var expected = false;
 
-            verify = verify.Replace("'", "\"");
-            subject = subject.Replace("'", "\"");
-
-            Assert.AreEqual(expected, Verify.VerifyTextReg(verify, subject));
+            Compare(verify, subject, expected);
         }
 
         [TestMethod]
@@ -176,10 +160,7 @@ namespace UnitTests
  ";
             var expected = true;
 
-            verify = verify.Replace("'", "\"");
-            subject = subject.Replace("'", "\"");
-
-            Assert.AreEqual(expected, Verify.VerifyTextReg(verify, subject));
+            Compare(verify, subject, expected);
         }
 
 
